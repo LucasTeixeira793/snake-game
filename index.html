@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="game.js" defer type="module"></script> <!-- Defer significa q vai executar o script após a execução do <body> -->
+</head>
+<body>
+    <div id="gameBegin">
+        <div class="modal">
+            <div class="modal-header">
+                <b>Welcome to snake game</b>
+            </div>
+            <div class="modal-content">
+                <div>
+                    <center>
+                    Set the snake speed:<br>  
+                        <input type="number" min="1" max="20" value="10" id="inputSnakeSpeed" onchange="showDifficulty('inputSnakeSpeed')">
+                    </center>
+                </div>
+                <div>
+                    <center>
+                    <br> Set the expansion rate for the snake:  <br>  
+                        <input type="number" min="1" max="10" value="4" id="inputSnakeExpansion" onchange="showDifficulty('inputSnakeExpansion')">
+                    </center>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <br>
+                <center>
+                    <button onclick="gameConfig()">Start game</button>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div id="game">
+        <div id="game-board">
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+function showDifficulty(input){
+    if (input == 'inputSnakeSpeed') {
+        if(document.getElementById(input).value < 7){
+            document.getElementById(input).style.background = "#04520088";
+        }else if(document.getElementById(input).value < 15){
+            document.getElementById(input).style.background = "#eb7d0088";
+        }else{
+            document.getElementById(input).style.background = "#cf000088";
+        }
+    }else{
+        if(document.getElementById(input).value > 7){
+            document.getElementById(input).style.background = "#04520088";
+        }else if(document.getElementById(input).value >3){
+            document.getElementById(input).style.background = "#eb7d0088";
+        }else{
+            document.getElementById(input).style.background = "#cf000088";
+        }
+    }
+}
+
+function gameConfig(){
+    startGame();
+    let gameConfig = {
+        speed: document.getElementById('inputSnakeSpeed').value,
+        expansion: document.getElementById('inputSnakeExpansion').value
+    };
+    return gameConfig;
+}
+
+function startGame(){
+    gameBegin.style.display = "none";
+    game.style.display = "block";
+}
+
+</script>
